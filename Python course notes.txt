@@ -726,9 +726,18 @@ p.yaxis.axis_label="Intensity"
 17-202 practice  - dataframe = pandas.read_excel('verlegenhuken.xlsx')  - fig.scatter(temperature_x, pressure_y)
 
 17-205 https://www.alphavantage.co/support/#api-key    0U1XJSQJG1EXCE3V   API key for Alpha Vantage (in lieu of functional Google/Yahoo APIs)  https://www.alphavantage.co/documentation/    
-scale_both - https://bokeh.pydata.org/en/latest/docs/reference/layouts.html   - x_axis_type="datetime" to handle dates
-
-
+sizing_mode=scale_both - https://bokeh.pydata.org/en/latest/docs/reference/layouts.html   - x_axis_type="datetime" to handle dates
+17-206 figure.quad for quadrants (areas) using arrays/dataframe-series
+17-207 Bokeh quadrants and formatting - fig = figure(x_axis_type="datetime", height=100, width=500, sizing_mode="scale_both", title="Motion Graph")
+fig.yaxis.minor_tick_line_color = None
+fig.ygrid[0].ticker.desired_num_ticks = 1
+quadrant = fig.quad(left=df['Start'], right=df['Finish'], bottom=0, top=1, color="green")
+output_file("Graph.html")
+show(fig)
+17-208 (Bokeh) HoverTool with tooltips hover = HoverTool(tooltips=[('Start: ', '@Start'), ('Finish: ', '@Finish')]);   figure.add_tools(hover)
+(Bokeh) ColumnDataSource - column_data_source = ColumnDataSource(df); - in figure(.... , source = column_data_source - will enable , e.g. '@Start'
+couldn't get Hovertool's Source (for dat/time start) to work without RuntimeError: Expected left and right to reference fields in the supplied data source.
+ 
 
 -----------------------------------------------
 
